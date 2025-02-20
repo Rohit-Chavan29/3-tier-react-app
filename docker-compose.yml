@@ -1,0 +1,37 @@
+services:
+  frontend:
+    image: rchavan29/3-tier-react-app:frontend_1.0
+    ports:
+      - "81:80"
+    networks:
+      - my-network
+    depends_on:
+      - backend
+
+  backend:
+    image: rchavan29/3-tier-react-app:backend_1.0
+    ports:
+      - "5000:5000"
+    networks:
+      - my-network
+    depends_on:
+      - postgress_db
+
+  postgress_db:
+    image: postgres:17.3
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks:
+      - my-network
+    volumes:
+      - my-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  my-postgres-data:
+    external: true
+
+networks:
+  my-network:
+    driver: bridge
