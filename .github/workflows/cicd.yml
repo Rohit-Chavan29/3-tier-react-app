@@ -49,7 +49,7 @@ jobs:
             echo "${{ secrets.SSH_KEY }}" >> ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@43.205.96.33 << EOF
-              if [-d 3-tier-react-app ]
+              if [ -d "/home/ec2-user/3-tier-react-app" ]
               then
                 cd 3-tier-react-app && git pull origin master
               else
