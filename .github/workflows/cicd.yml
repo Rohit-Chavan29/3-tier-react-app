@@ -57,6 +57,7 @@ jobs:
               fi
               docker-compose pull
               docker-compose down
+              docker rmi -f postgres:17.3
               docker image prune -f
               docker-compose up -d
             EOF
