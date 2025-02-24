@@ -30,7 +30,7 @@ services:
 
 volumes:
   my-postgres-data:
-    external: true
+    driver: local
 
 networks:
   my-network:
