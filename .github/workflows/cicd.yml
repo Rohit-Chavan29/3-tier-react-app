@@ -48,13 +48,17 @@ jobs:
             mkdir -p ~/.ssh
             echo "${{ secrets.SSH_KEY }}" >> ~/.ssh/id_rsa
             chmod 600 ~/.ssh/id_rsa
-            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@43.205.96.33
-            git clone https://github.com/Rohit-Chavan29/3-tier-react-app.git
-            echo "Succefully Cloned"
-            pwd
-            hostname
-            docker-compose down
-            docker-compose up -d
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@43.205.96.33 << EOF
+              if [-d 3-tier-react-app ]
+              then
+                cd 3-tier-react-app && git pull origin master
+              else
+                git clone https://github.com/Rohit-Chavan29/3-tier-react-app.git
+              fi
+              docker-compose down
+              docker-compose up -d
+            EOF
+
 
 
 
