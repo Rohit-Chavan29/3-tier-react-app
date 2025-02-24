@@ -57,6 +57,7 @@ jobs:
               fi
               docker-compose pull
               docker-compose down
+              docker image prune -f
               docker-compose up -d
             EOF
 

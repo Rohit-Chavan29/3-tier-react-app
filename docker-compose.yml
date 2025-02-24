@@ -23,6 +23,7 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=itemsdb
     networks:
       - my-network
     volumes:
