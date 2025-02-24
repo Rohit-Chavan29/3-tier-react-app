@@ -39,5 +39,19 @@ jobs:
               context: backend
               tags: ${{ vars.DOCKERHUB_USERNAME }}/3-tier-react-app:backend_1.0
 
+  deploy:
+      needs: [build_frontend , build_backend]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Setup-SSH-key
+          run: |
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_KEY }}" >> ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ec2-user@43.205.96.33
+            git clone https://github.com/Rohit-Chavan29/3-tier-react-app.git
+            docker-compose down
+            docker-compose up -d
+
 
 
