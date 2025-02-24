@@ -2,7 +2,7 @@ name: 3 tier-application-CICD
 on: [push]
 jobs:
   build_frontend:
-    runs-on: ubunto-latest
+    runs-on: ubuntu-latest
     steps:
       - name: cloning repo
         uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/3-tier-react-app:frontend_1.0
 
   build_backend:
-      runs-on: ubunto:latest
+      runs-on: ubuntu:latest
       steps:
           - name: cloning repo
             uses: actions/checkout@v3
