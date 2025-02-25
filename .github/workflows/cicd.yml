@@ -57,7 +57,9 @@ jobs:
                 cd 3-tier-react-app && git pull origin master
               else
                 git clone https://github.com/Rohit-Chavan29/3-tier-react-app.git
+                cd 3-tier-react-app
               fi
+
               docker-compose pull
               docker-compose down
               docker image prune -f
