@@ -11,7 +11,7 @@ function App() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/items');
+      const response = await fetch('http://backend:5000/api/items');
       const data = await response.json();
       setItems(data);
     } catch (error) {
@@ -24,7 +24,7 @@ function App() {
     if (!newItem.trim()) return;
 
     try {
-      await fetch('http://localhost:5000/api/items', {
+      await fetch('http://backend:5000/api/items', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/items/${id}`, {
+      await fetch(`http://backend:5000/api/items/${id}`, {
         method: 'DELETE',
       });
       fetchItems(); // Refresh items after delete
